@@ -2005,6 +2005,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 
 ---
+
 kind: StatefulSet
 apiVersion: apps/v1
 metadata:
@@ -2309,6 +2310,12 @@ spec:
               value: agent
             - name: OPENEBS_NAMESPACE
               value: openebs
+            - name: ALLOWED_TOPOLOGIES
+              # The desired comma separated keys can be added here,
+              # by default all the node label keys are allowed.
+              # For example:
+              # value: "kubernetes.io/hostname,openebs.io/rack"
+              value: "All"
           volumeMounts:
             - name: plugin-dir
               mountPath: /plugin
